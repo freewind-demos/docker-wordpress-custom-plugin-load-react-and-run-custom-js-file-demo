@@ -1,6 +1,6 @@
 <?php
 /**
- * Plugin Name: Hello Wordpress Plugin
+ * Plugin Name: docker-wordpress-custom-plugin-load-js-file-in-head-demo
  * Plugin URI: http://my.plugin
  * Description: My wordpress plugin
  * Version: 1.0
@@ -8,17 +8,9 @@
  * Author URI: http://my.host
  */
 
-function helloHead()
-{
-    echo '<script>alert("Hello Head")</script>';
-}
+wp_register_script('lodash-from-cdn', 'https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.15/lodash.core.js');
+wp_enqueue_script('lodash-from-cdn');
 
-function helloFooter()
-{
-    echo '<h1>Hello, footer</h1>';
-}
-
-add_action('wp_head', 'helloHead');
-add_action('wp_footer', 'helloFooter');
+wp_add_inline_script('lodash-from-cdn', '<script>alert(_.VERSION)</script>');
 
 ?>
